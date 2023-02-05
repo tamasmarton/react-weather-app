@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .yarn
+.eslintcache
 
 # Editor directories and files
 .vscode/*
