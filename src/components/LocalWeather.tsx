@@ -3,9 +3,9 @@ import { WiDaySnowWind } from 'react-icons/all'
 interface IWeatherItem {
   title: string
   temp: string
-  icon: string
+  icon?: string
 }
-function WeatherItemByHour({ title, temp, icon }: IWeatherItem) {
+function WeatherItemByHour({ title, temp }: IWeatherItem) {
   return (
     <div className='flex flex-col items-center'>
       <p>{title}</p>
@@ -15,7 +15,7 @@ function WeatherItemByHour({ title, temp, icon }: IWeatherItem) {
   )
 }
 
-function WeatherItemByDay({ title, temp, icon }: IWeatherItem) {
+function WeatherItemByDay({ title, temp }: IWeatherItem) {
   return (
     <div className='flex justify-between'>
       <span>{title}</span>
@@ -29,7 +29,7 @@ function WeatherItemByDay({ title, temp, icon }: IWeatherItem) {
 
 function LocalWeather() {
   return (
-    <div className='flex flex-col justify-center items-center space-y-12 py-12 text-white dark:text-black bg-sky-700'>
+    <div className='flex flex-col justify-center items-center space-y-12 py-12 bg-sky-300 dark:bg-sky-700'>
       <p className='text-xl'>Budapest</p>
 
       <div className='text-center'>
