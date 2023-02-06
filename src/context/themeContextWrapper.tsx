@@ -10,7 +10,7 @@ interface Props {
 
 export const ThemeContextWrapper: FC<Props> = ({ children }) => {
   const savedTheme: unknown = useLocalStorage('appTheme')
-  const [theme, setTheme] = useState(savedTheme)
+  const [theme, setTheme] = useState(savedTheme as string)
 
   const changeCurrentTheme = (newTheme: 'dark' | 'light') => {
     setTheme(newTheme)

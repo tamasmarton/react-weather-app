@@ -5,7 +5,7 @@ const systemTheme = isSystemThemeDark ? 'dark' : 'light'
 
 const defaultValue = {
   currentTheme: systemTheme,
-  changeCurrentTheme: (newTheme: 'dark' | 'light') => {},
+  changeCurrentTheme: (_newTheme: 'dark' | 'light') => {},
 }
 
 export const ThemeContext = createContext(defaultValue)

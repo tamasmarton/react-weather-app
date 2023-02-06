@@ -14,9 +14,10 @@
     "lint": "yarn lint:format && yarn lint:fix ",
     "type-check": "tsc",
     "prepare": "husky install",
-    "pre-commit": "lint:staged"
+    "pre-commit": "tsc && lint:staged"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1"
