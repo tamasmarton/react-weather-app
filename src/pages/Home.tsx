@@ -4,7 +4,7 @@ import SixCityWeather from '~/components/SixCityWeather'
 
 function Home() {
   return (
-    <div className='w-screen min-h-screen flex flex-col justify-center items-center bg-sky-800'>
+    <div className={`w-screen min-h-screen flex flex-col justify-center items-center transition-colors duration-200`}>
       <MenuBar />
 
       <div className='container space-y-6'>
