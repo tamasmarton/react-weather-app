@@ -1,7 +1,6 @@
-// import { usePosition } from '~/hooks/usePosition'
-
 import { useQuery } from 'react-query'
 
+// import { usePosition } from '~/hooks/usePosition'
 import WeatherByDays from '~/components/weather-by-days'
 import WeatherByHours from '~/components/weather-by-hours'
 import { getWeatherByCoordinates } from '~/Fetchers'
@@ -37,7 +36,10 @@ function LocalWeather() {
         <p className='mt-4 text-md'>{data?.current.weather[0].main}</p>
       </div>
 
-      <WeatherByHours data={weatherDataByNextTwelveHours} />
+      <WeatherByHours
+        timezoneOffset={data?.timezone_offset}
+        data={weatherDataByNextTwelveHours}
+      />
 
       <hr className='border border-sky-400 dark:border-sky-800 w-full' />
 

@@ -1,6 +1,6 @@
 import WeatherItemByHour from '~/components/weather-by-hours/WeatherItemByHour'
 
-const WeatherByHours = ({ data }: { data: any }) => {
+const WeatherByHours = ({ data, timezoneOffset }: { data: any; timezoneOffset: number }) => {
   if (!data) return <p>An error occurred.</p>
 
   return (
@@ -11,7 +11,7 @@ const WeatherByHours = ({ data }: { data: any }) => {
             key={id}
             icon={hourData?.weather[0]?.icon}
             temp={hourData?.temp}
-            timestamp={hourData?.dt}
+            timestamp={hourData?.dt + timezoneOffset}
           />
         )
       })}
