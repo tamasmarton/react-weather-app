@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 // import { usePosition } from '~/hooks/usePosition'
 import WeatherByDays from '~/components/weather-by-days'
 import WeatherByHours from '~/components/weather-by-hours'
-import { getWeatherByCoordinates } from '~/Fetchers'
+import { getCurrentWeatherByCoordinates } from '~/Fetchers'
 
 function LocalWeather() {
   // const [lat, long, loadingLocation, findCoordinates] = usePosition()
@@ -13,10 +13,7 @@ function LocalWeather() {
     long: 19.090888448304877,
   }
 
-  const { data } = useQuery('localWeather', getWeatherByCoordinates(geolocation.lat, geolocation.long))
-
-  const weatherDataByNextTwelveHours = data?.hourly.slice(0, 12)
-  const weatherDataBySixDay = data?.daily.slice(0, 6)
+  const { data } = useQuery('localCurrentWeather', getCurrentWeatherByCoordinates(geolocation.lat, geolocation.long))
 
   if (!data) return <p>An error occurred.</p>
 
@@ -36,14 +33,11 @@ function LocalWeather() {
         <p className='mt-4 text-md'>{data?.current.weather[0].main}</p>
       </div>
 
-      <WeatherByHours
-        timezoneOffset={data?.timezone_offset}
-        data={weatherDataByNextTwelveHours}
-      />
+      <WeatherByHours geolocation={geolocation} />
 
       <hr className='border border-sky-400 dark:border-sky-800 w-full' />
 
-      <WeatherByDays data={weatherDataBySixDay} />
+      <WeatherByDays geolocation={geolocation} />
     </div>
   )
 }
