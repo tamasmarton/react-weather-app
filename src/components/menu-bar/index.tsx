@@ -1,12 +1,17 @@
-import DarkModeToggle from '~/components/ui/DarkModeToggle'
+import DarkModeSwitcher from '~/components/menu-bar/DarkModeSwitcher'
+import UnitSwitcher from '~/components/menu-bar/UnitSwitcher'
 
-function MenuBar() {
+const MenuBar = () => {
   return (
     <div className='w-full h-10 flex items-center fixed top-0 bg-sky-600 shadow-md'>
       <div className='container flex justify-between items-center'>
         <p className='text-2xl font-semibold'>React Weather App</p>
 
-        <DarkModeToggle />
+        <div className='flex items-center space-x-6'>
+          <UnitSwitcher />
+
+          <DarkModeSwitcher />
+        </div>
       </div>
     </div>
   )

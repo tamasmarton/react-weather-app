@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import MenuBar from '~/components/MenuBar'
+import MenuBar from '~/components/menu-bar'
 import LocalWeather from '~/components/widgets/LocalWeather'
 import SixCityWeather from '~/components/widgets/SixCityWeather'
 
