@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import LocalWeather from '~/components/LocalWeather'
 import MenuBar from '~/components/MenuBar'
-import SixCityWeather from '~/components/SixCityWeather'
+import LocalWeather from '~/components/widgets/LocalWeather'
+import SixCityWeather from '~/components/widgets/SixCityWeather'
 
 const Home = () => {
   const client = new QueryClient({

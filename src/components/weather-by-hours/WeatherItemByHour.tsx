@@ -1,9 +1,9 @@
-import { format } from 'date-fns'
+import { format, fromUnixTime } from 'date-fns'
 
-const WeatherItemByHour = ({ title, temp, icon }: IWeatherItem) => {
+const WeatherItemByHour = ({ timestamp, temp, icon }: IWeatherItem) => {
   return (
     <div className='w-full flex flex-col items-center'>
-      <p>{format(new Date(title), 'HH:mm')}</p>
+      <p>{format(fromUnixTime(timestamp), 'HH:mm')}</p>
       <img
         alt={icon}
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}

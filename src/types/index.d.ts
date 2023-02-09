@@ -2,9 +2,10 @@ export {}
 
 declare global {
   interface IWeatherItem {
-    title: string
+    title?: string
     temp: string
     icon?: string
+    timestamp: number
   }
 
   interface IGeoLocation {
