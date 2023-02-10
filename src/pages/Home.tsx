@@ -1,9 +1,10 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import MenuBar from '~/components/menu-bar'
 import LocalWeather from '~/components/widgets/LocalWeather'
 import SixCityWeather from '~/components/widgets/SixCityWeather'
+import { usePosition } from '~/hooks/usePosition'
 
 const Home = () => {
   const client = new QueryClient({
@@ -14,6 +15,13 @@ const Home = () => {
     },
   })
 
+  const [geolocation, _, findCoordinates] = usePosition()
+
+  useEffect(() => {
+    findCoordinates()
+    console.warn('Default fetching')
+  }, [])
+
   return (
     <QueryClientProvider client={client}>
       <Suspense fallback={<p>Loading...</p>}>
@@ -23,7 +31,7 @@ const Home = () => {
           <MenuBar />
 
           <div className='container space-y-6'>
-            <LocalWeather />
+            <LocalWeather geolocation={geolocation} />
             <SixCityWeather />
           </div>
         </div>

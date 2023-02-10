@@ -1,6 +1,11 @@
 import { format, fromUnixTime } from 'date-fns'
 
+import useMetricSystem from '~/hooks/useMetricSystem'
+import { formatTemp } from '~/utils/formatTemp'
+
 const WeatherItemByDay = ({ temp, timestamp, icon }: IWeatherItem) => {
+  const [unit] = useMetricSystem()
+
   return (
     <div className='flex justify-between items-center'>
       <span>{format(fromUnixTime(timestamp), 'E')}</span>
@@ -11,7 +16,7 @@ const WeatherItemByDay = ({ temp, timestamp, icon }: IWeatherItem) => {
         className='w-10 h-10'
       />
 
-      <span>{temp}˚C</span>
+      <span>{formatTemp(temp, unit)}</span>
     </div>
   )
 }

@@ -7,6 +7,10 @@ import { ThemeContext } from '~/context/themeContext'
 function DarkModeSwitcher() {
   const { currentTheme, changeCurrentTheme } = useContext(ThemeContext)
 
+  const handleChange = () => {
+    changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light')
+  }
+
   return (
     <div className='flex justify-center items-center space-x-2'>
       <div>
@@ -15,7 +19,7 @@ function DarkModeSwitcher() {
 
       <ToggleButton
         toggled={currentTheme === 'light'}
-        onClick={() => changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light')}
+        onClick={() => handleChange()}
       />
 
       <div>

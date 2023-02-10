@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
-type ReturnType<T> = [T | undefined, Dispatch<SetStateAction<T | undefined>>]
+type StateType<T> = T | undefined
 
-export const useLocalStorage = <T,>(keyName: string, fallbackState?: T): ReturnType<T> => {
-  const [state, setState] = useState<T | undefined>(() => {
+export const useLocalStorage = <T,>(keyName: string, fallbackState: T): [StateType<T>, Dispatch<SetStateAction<T>>] => {
+  const [state, setState] = useState<StateType<T>>(() => {
     if (!fallbackState) return
 
     try {

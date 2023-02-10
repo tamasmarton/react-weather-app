@@ -1,17 +1,13 @@
 import { useQuery } from 'react-query'
 
-// import { usePosition } from '~/hooks/usePosition'
 import WeatherByDays from '~/components/weather-by-days'
 import WeatherByHours from '~/components/weather-by-hours'
 import { getCurrentWeatherByCoordinates } from '~/Fetchers'
+import useMetricSystem from '~/hooks/useMetricSystem'
+import { formatTemp } from '~/utils/formatTemp'
 
-function LocalWeather() {
-  // const [lat, long, loadingLocation, findCoordinates] = usePosition()
-
-  const geolocation: IGeoLocation = {
-    lat: 47.5514059560408,
-    long: 19.090888448304877,
-  }
+const LocalWeather = ({ geolocation }: { geolocation: IGeoLocation }) => {
+  const [unit] = useMetricSystem()
 
   const { data } = useQuery('localCurrentWeather', getCurrentWeatherByCoordinates(geolocation.lat, geolocation.long))
 
@@ -28,7 +24,7 @@ function LocalWeather() {
           className='w-18 h-18 block mx-auto'
         />
 
-        <p className='text-6xl font-bold'>{data?.current.temp}˚C</p>
+        <p className='text-6xl font-bold'>{formatTemp(data?.current.temp, unit)}</p>
 
         <p className='mt-4 text-md'>{data?.current.weather[0].main}</p>
       </div>
