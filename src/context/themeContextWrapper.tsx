@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 import { useLocalStorage } from '~/hooks/useLocalStorage'
 
@@ -7,7 +7,7 @@ import { ThemeContext } from './themeContext'
 export type TThemeMode = 'dark' | 'light'
 
 export const ThemeContextWrapper = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useLocalStorage('appTheme', '')
+  const [theme, setTheme] = useLocalStorage<TThemeMode | string>('appTheme', '')
 
   console.log('theme', theme)
 
@@ -23,5 +23,6 @@ export const ThemeContextWrapper = ({ children }: { children: ReactNode }) => {
     console.log('theme', theme)
   }, [theme])
 
+  // @ts-ignore
   return <ThemeContext.Provider value={{ currentTheme: theme, changeCurrentTheme }}>{children}</ThemeContext.Provider>
 }

@@ -24,5 +24,6 @@ export const useLocalStorage = <T,>(keyName: string, fallbackState: T): [StateTy
     }
   }, [state, setState])
 
+  // @ts-ignore
   return [state, setState]
 }

@@ -6,10 +6,10 @@ import { getCurrentWeatherByCoordinates } from '~/Fetchers'
 import useMetricSystem from '~/hooks/useMetricSystem'
 import { formatTemp } from '~/utils/formatTemp'
 
-const LocalWeather = ({ geolocation }: { geolocation: IGeoLocation }) => {
+const LocalWeather = ({ geolocation }: { geolocation: any }) => {
   const [unit] = useMetricSystem()
 
-  const { data } = useQuery('localCurrentWeather', getCurrentWeatherByCoordinates(geolocation.lat, geolocation.long))
+  const { data } = useQuery('localCurrentWeather', getCurrentWeatherByCoordinates(geolocation))
 
   if (!data) return <p>An error occurred.</p>
 

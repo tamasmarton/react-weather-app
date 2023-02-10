@@ -18,6 +18,7 @@ const Home = () => {
   const [geolocation, _, findCoordinates] = usePosition()
 
   useEffect(() => {
+    // @ts-ignore
     findCoordinates()
     console.warn('Default fetching')
   }, [])

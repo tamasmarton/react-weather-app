@@ -2,15 +2,16 @@ import { useEffect } from 'react'
 
 import { useLocalStorage } from '~/hooks/useLocalStorage'
 
-type MetricSystem = 'metric' | 'imperial'
+type TMetricSystem = 'metric' | 'imperial'
 
-const useMetricSystem = (): [MetricSystem, (value: MetricSystem) => void] => {
-  const [unit, setUnit] = useLocalStorage<MetricSystem>('appUnit', 'metric')
+const useMetricSystem = (): [TMetricSystem, (value: TMetricSystem) => void] => {
+  const [unit, setUnit] = useLocalStorage<TMetricSystem>('appUnit', 'metric')
 
   useEffect(() => {
     console.log(`Metric system changed to: ${unit}`)
   }, [unit])
 
+  // @ts-ignore
   return [unit, setUnit]
 }
 
