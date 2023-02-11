@@ -11,7 +11,7 @@ const WeatherByHours = ({ geolocation }: { geolocation: IGeoLocation }) => {
   if (!data) return <p>An error occurred.</p>
 
   return (
-    <div className='w-full grid grid-cols-12 px-12'>
+    <div className='max-w-full flex justify-start items-center space-x-4 px-12 overflow-x-scroll'>
       {nextTwelveHourData?.map((hourData: any, id: number) => {
         return (
           <WeatherItemByHour

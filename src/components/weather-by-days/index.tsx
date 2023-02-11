@@ -8,12 +8,10 @@ const WeatherByDays = ({ geolocation }: { geolocation: IGeoLocation }) => {
 
   const nextSixDayData = { ...data, daily: data?.daily.slice(0, 6) }
 
-  console.log(nextSixDayData)
-
   if (!nextSixDayData) return <p>An error occurred.</p>
 
   return (
-    <div className='w-1/3'>
+    <div className='w-full sm:w-3/4 md:w-2/3 px-16 sm:px-8 md:px-0'>
       <h3 className='mb-6 text-2xl font-bold text-center uppercase'>6 day forecast</h3>
 
       {nextSixDayData?.daily.map((day: any, id: number) => {

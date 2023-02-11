@@ -7,7 +7,7 @@ const WeatherItemByHour = ({ timestamp, temp, icon }: IWeatherItem) => {
   const [unit] = useMetricSystem()
 
   return (
-    <div className='w-full flex flex-col items-center'>
+    <div className='w-16 flex flex-col items-center'>
       <p>{format(fromUnixTime(timestamp), 'HH:mm')}</p>
       <img
         alt={icon}

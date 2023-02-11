@@ -18,3 +18,9 @@ export const getDailyForecastByCoordinates = (geolocation: IGeoLocation) => () =
   fetch(
     `${API_URL}onecall?lat=${geolocation.lat}&lon=${geolocation.long}&appid=${API_KEY}&units=${UNITS}&exclude=hourly,current,minutely`
   ).then(response => response.json())
+
+export const getCurrentWeatherByCity = (city: string) => () => {
+  return fetch(`${API_URL}weather?q=${city}&appid=${API_KEY}&units=${UNITS}&exclude=hourly,current,minutely`).then(
+    response => response.json()
+  )
+}

@@ -7,16 +7,16 @@ const WeatherItemByDay = ({ temp, timestamp, icon }: IWeatherItem) => {
   const [unit] = useMetricSystem()
 
   return (
-    <div className='flex justify-between items-center'>
-      <span>{format(fromUnixTime(timestamp), 'E')}</span>
+    <div className='grid grid-cols-3 items-center'>
+      <span className='text-left'>{format(fromUnixTime(timestamp), 'EEEE')}</span>
 
       <img
         alt={icon}
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-        className='w-10 h-10'
+        className='w-10 h-10 mx-auto'
       />
 
-      <span>{formatTemp(temp, unit)}</span>
+      <span className='text-right'>{formatTemp(temp, unit)}</span>
     </div>
   )
 }
