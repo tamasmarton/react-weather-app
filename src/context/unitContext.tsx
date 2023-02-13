@@ -14,7 +14,6 @@ export const UnitProvider = ({ children }: { children: ReactNode }) => {
   const [unit, setUnit] = useState(savedUnit)
 
   const changeUnit = () => {
-    console.log('CHANGE UNIT TRIGGER')
     setUnit(prevState => (prevState === 'metric' ? 'imperial' : 'metric'))
     setSavedUnit(prevState => (prevState === 'metric' ? 'imperial' : 'metric'))
   }
