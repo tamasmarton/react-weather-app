@@ -4,11 +4,16 @@ import WeatherItemByHour from '~/components/weather-by-hours/WeatherItemByHour'
 import { getHourlyForecastByCoordinates } from '~/Fetchers'
 
 const WeatherByHours = ({ geolocation }: { geolocation: IGeoLocation }) => {
-  const { data } = useQuery('localHourlyWeather', getHourlyForecastByCoordinates(geolocation))
+  const { data, isLoading, isError } = useQuery({
+    queryKey: 'localHourlyWeather',
+    enabled: geolocation.lat !== null && geolocation.long !== null,
+    queryFn: getHourlyForecastByCoordinates(geolocation),
+  })
 
   const nextTwelveHourData = data?.hourly.slice(0, 12)
 
-  if (!data) return <p>An error occurred.</p>
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>An error occurred.</p>
 
   return (
     <div className='max-w-full flex justify-start items-center space-x-4 px-12 overflow-x-scroll'>

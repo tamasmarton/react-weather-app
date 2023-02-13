@@ -9,9 +9,14 @@ import { formatTemp } from '~/utils/formatTemp'
 const LocalWeather = ({ geolocation }: { geolocation: any }) => {
   const unit = useUnit()
 
-  const { data } = useQuery('localCurrentWeather', getCurrentWeatherByCoordinates(geolocation))
+  const { data, isError, isLoading } = useQuery({
+    queryKey: 'localCurrentWeather',
+    enabled: geolocation.lat !== null && geolocation.long !== null,
+    queryFn: getCurrentWeatherByCoordinates(geolocation),
+  })
 
-  if (!data) return <p>An error occurred.</p>
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>An error occurred.</p>
 
   return (
     <div className='flex flex-col justify-center items-center space-y-12 py-12 bg-sky-300 dark:bg-sky-700'>

@@ -1,5 +1,7 @@
 import { Suspense, useEffect } from 'react'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider, QueryKey } from 'react-query'
+import { createWebStoragePersistor } from 'react-query/createWebStoragePersistor-experimental'
+import { persistQueryClient } from 'react-query/persistQueryClient-experimental'
 
 import MenuBar from '~/components/menu-bar'
 import LocalWeather from '~/components/widgets/LocalWeather'
@@ -7,11 +9,30 @@ import SixCityWeather from '~/components/widgets/SixCityWeather'
 import { usePosition } from '~/hooks/usePosition'
 
 const Home = () => {
+  const oneDayInMs = 86400000
+
   const client = new QueryClient({
     defaultOptions: {
       queries: {
         suspense: true,
+        cacheTime: oneDayInMs,
+        refetchOnWindowFocus: false,
       },
+    },
+  })
+
+  const localStoragePersistor = createWebStoragePersistor({
+    storage: window.localStorage,
+  })
+
+  const notPersistedQueries: QueryKey[] = ['localCurrentWeather', 'localHourlyWeather']
+
+  persistQueryClient({
+    queryClient: client,
+    persistor: localStoragePersistor,
+    maxAge: oneDayInMs,
+    dehydrateOptions: {
+      shouldDehydrateQuery: ({ queryKey }) => !notPersistedQueries.includes(queryKey),
     },
   })
 
@@ -20,8 +41,10 @@ const Home = () => {
   useEffect(() => {
     // @ts-ignore
     findCoordinates()
-    console.warn('Default fetching')
   }, [])
+
+  // @ts-ignore
+  if (geolocation.lat === null && geolocation.long === null) return <p>Geolocation Error</p>
 
   return (
     <QueryClientProvider client={client}>

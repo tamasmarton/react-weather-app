@@ -4,11 +4,38 @@ import WeatherItemByDay from '~/components/weather-by-days/WeatherItemByDay'
 import { getDailyForecastByCoordinates } from '~/Fetchers'
 
 const WeatherByDays = ({ geolocation }: { geolocation: IGeoLocation }) => {
-  const { data } = useQuery('localDailyWeather', getDailyForecastByCoordinates(geolocation))
+  // const [savedDailyData, setSavedDailyData] = useLocalStorage('appNextSixDayForecast', false)
+  // const [hasSavedData, setHasSavedData] = useState<boolean>(!!savedDailyData)
+
+  // const [nextSixDayData, setNextSixDayData] = useState<any>(savedDailyData)
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: 'localDailyWeather',
+    keepPreviousData: true,
+    enabled: geolocation.lat !== null && geolocation.long !== null,
+    queryFn: getDailyForecastByCoordinates(geolocation),
+  })
+
+  // console.log('SAVED: ', !!savedDailyData)
+  //
+  // useEffect(() => {
+  //   if (savedDailyData) {
+  //     console.log('saved daily', savedDailyData)
+  //     console.log('QUERY FALSE: ', isLoading, isSuccess, status)
+  //
+  //     setNextSixDayData({ ...savedDailyData, daily: savedDailyData?.daily.slice(0, 6) })
+  //   } else {
+  //     console.log('nincsen')
+  //     setSavedDailyData(data)
+  //     setHasSavedData(true)
+  //     console.log('QUERY TRUE: ', isLoading, isSuccess, status)
+  //   }
+  // }, [hasSavedData])
 
   const nextSixDayData = { ...data, daily: data?.daily.slice(0, 6) }
 
-  if (!nextSixDayData) return <p>An error occurred.</p>
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>An error occurred.</p>
 
   return (
     <div className='w-full sm:w-3/4 md:w-2/3 px-16 sm:px-8 md:px-0'>

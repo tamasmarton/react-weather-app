@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
 export const usePosition = () => {
-  // const [lat, setLat] = useState<number>()
-  // const [long, setLong] = useState<number>()
   const [loadingLocation, setLoadingLocation] = useState(false)
   const [geolocation, setGeolocation] = useState<IGeoLocation>({
     lat: null,
@@ -20,21 +18,8 @@ export const usePosition = () => {
       getPosition().then((position: any) => {
         setGeolocation({ lat: position.coords.latitude, long: position.coords.longitude })
 
-        console.log('getPosition', position)
+        // console.log('getPosition', position)
       })
-
-      // navigator.geolocation.getCurrentPosition(
-      //   pos => {
-      //     console.log('usePosition: ', pos.coords)
-      //     setLat(pos.coords.latitude)
-      //     setLong(pos.coords.longitude)
-      //   },
-      //   positionError => {
-      //     setLat(47.5545059)
-      //     setLong(19.0926884)
-      //     console.log(positionError)
-      //   }
-      // )
 
       setLoadingLocation(false)
     } else {
