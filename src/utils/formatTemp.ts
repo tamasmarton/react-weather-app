@@ -3,7 +3,7 @@ const convertF = (temp: number) => {
 }
 
 const convertC = (temp: number) => {
-  return temp
+  return temp - 273.15
 }
 
 export const formatTemp = (temp: number, unit: string) => {

@@ -1,24 +1,17 @@
 import ToggleButton from '~/components/ui/ToggleButton'
-import useMetricSystem from '~/hooks/useMetricSystem'
+import { useUnit, useUnitUpdate } from '~/context/unitContext'
 
 const UnitSwitcher = () => {
-  const [metricSystem, setMetricSystem] = useMetricSystem()
-
-  const changeUnit = () => {
-    if (metricSystem === 'metric') {
-      setMetricSystem('imperial')
-    } else {
-      setMetricSystem('metric')
-    }
-  }
+  const unit = useUnit()
+  const changeUnit = useUnitUpdate()
 
   return (
     <div className='flex justify-center items-center space-x-2'>
       <span>˚F</span>
 
       <ToggleButton
-        toggled={metricSystem === 'metric'}
-        onClick={() => changeUnit()}
+        toggled={unit === 'metric'}
+        onClick={changeUnit}
       />
 
       <span>˚C</span>

@@ -2,12 +2,12 @@ import { useQuery } from 'react-query'
 
 import WeatherByDays from '~/components/weather-by-days'
 import WeatherByHours from '~/components/weather-by-hours'
+import { useUnit } from '~/context/unitContext'
 import { getCurrentWeatherByCoordinates } from '~/Fetchers'
-import useMetricSystem from '~/hooks/useMetricSystem'
 import { formatTemp } from '~/utils/formatTemp'
 
 const LocalWeather = ({ geolocation }: { geolocation: any }) => {
-  const [unit] = useMetricSystem()
+  const unit = useUnit()
 
   const { data } = useQuery('localCurrentWeather', getCurrentWeatherByCoordinates(geolocation))
 

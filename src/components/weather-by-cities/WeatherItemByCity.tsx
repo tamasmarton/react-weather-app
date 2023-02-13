@@ -1,11 +1,11 @@
 import { useQuery } from 'react-query'
 
+import { useUnit } from '~/context/unitContext'
 import { getCurrentWeatherByCity } from '~/Fetchers'
-import useMetricSystem from '~/hooks/useMetricSystem'
 import { formatTemp } from '~/utils/formatTemp'
 
 const WeatherItemByCity = ({ city }: { city: string }) => {
-  const [unit] = useMetricSystem()
+  const unit = useUnit()
 
   const { data } = useQuery(`currentWeatherIn${city}`, getCurrentWeatherByCity(city))
 

@@ -1,10 +1,10 @@
 import { format, fromUnixTime } from 'date-fns'
 
-import useMetricSystem from '~/hooks/useMetricSystem'
+import { useUnit } from '~/context/unitContext'
 import { formatTemp } from '~/utils/formatTemp'
 
 const WeatherItemByHour = ({ timestamp, temp, icon }: IWeatherItem) => {
-  const [unit] = useMetricSystem()
+  const unit = useUnit()
 
   return (
     <div className='w-16 flex flex-col items-center'>
