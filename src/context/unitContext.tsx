@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useState } from 'react'
 
 import { useLocalStorage } from '~/hooks/useLocalStorage'
 
-const UnitContext = createContext<string | undefined>(undefined)
+const UnitContext = createContext<any>(undefined)
 const UnitUpdateContext = createContext<() => void>(() => {})
 
 export const useUnit = () => useContext(UnitContext)

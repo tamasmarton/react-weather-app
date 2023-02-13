@@ -1,15 +1,11 @@
-import { useContext } from 'react'
 import { WiDaySunny, WiMoonWaningCrescent2 } from 'react-icons/wi'
 
 import ToggleButton from '~/components/ui/ToggleButton'
-import { ThemeContext } from '~/context/themeContext'
+import { useTheme, useThemeUpdate } from '~/context/themeContext'
 
 function DarkModeSwitcher() {
-  const { currentTheme, changeCurrentTheme } = useContext(ThemeContext)
-
-  const handleChange = () => {
-    changeCurrentTheme(currentTheme === 'light' ? 'dark' : 'light')
-  }
+  const theme = useTheme()
+  const changeTheme = useThemeUpdate()
 
   return (
     <div className='flex justify-center items-center space-x-2'>
@@ -18,8 +14,8 @@ function DarkModeSwitcher() {
       </div>
 
       <ToggleButton
-        toggled={currentTheme === 'light'}
-        onClick={() => handleChange()}
+        toggled={theme === 'light'}
+        onClick={changeTheme}
       />
 
       <div>

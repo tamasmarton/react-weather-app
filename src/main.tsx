@@ -3,16 +3,16 @@ import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { ThemeContextWrapper } from '~/context/themeContextWrapper'
+import { ThemeProvider } from '~/context/themeContext'
 import { UnitProvider } from '~/context/unitContext'
 import Home from '~/pages/Home'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ThemeContextWrapper>
+    <ThemeProvider>
       <UnitProvider>
         <Home />
       </UnitProvider>
-    </ThemeContextWrapper>
+    </ThemeProvider>
   </React.StrictMode>
 )
